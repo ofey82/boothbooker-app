@@ -7,6 +7,7 @@ import {
   getEventBoothsByStatus,
   getEventBoothsByExhibitor,
   updateEventBooth,
+  updateEventBoothExhibitor,
   deleteEventBooth,
 } from '../services/eventBoothService';
 import { EventBooth } from '../models/eventBooth';
@@ -107,6 +108,32 @@ export const updateEventBoothController = async (
   const data: Partial<EventBooth> = req.body;
   try {
     const booth = await updateEventBooth(Number(id), data);
+    if (booth) {
+      res.json(booth);
+    } else {
+      res.status(404).json({ error: 'Event booth not found' });
+    }
+  } catch (error) {
+    res.status(400).json({ error: 'Failed to update event booth' });
+  }
+};
+
+export const updateEventBoothExhibitorController = async (
+  req: Request,
+  res: Response
+) => {
+  const { id } = req.params;
+  const { exhibitorId } = req.body;
+
+  if (!exhibitorId) {
+    return res.status(400).json({ error: 'Exhibitor ID is required' });
+  }
+
+  try {
+    const booth = await updateEventBoothExhibitor(
+      Number(id),
+      Number(exhibitorId)
+    );
     if (booth) {
       res.json(booth);
     } else {

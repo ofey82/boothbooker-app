@@ -38,7 +38,7 @@ export const getAllEventBooths = async (): Promise<PublicEventBooth[]> => {
       exhibitorId: true,
     },
   });
-  return eventBooths.map((booth) => ({
+  return eventBooths.map((booth: any) => ({
     ...booth,
     status: booth.status as 'A' | 'B',
   }));
@@ -79,7 +79,7 @@ export const getEventBoothsByEventId = async (
       exhibitorId: true,
     },
   });
-  return eventBooths.map((booth) => ({
+  return eventBooths.map((booth: any) => ({
     ...booth,
     status: booth.status as 'A' | 'B',
   }));
@@ -165,6 +165,29 @@ export const updateEventBooth = async (
   return eventBooth
     ? { ...eventBooth, status: eventBooth.status as 'A' | 'B' }
     : null;
+};
+
+export const updateEventBoothExhibitor = async (
+  id: number,
+  exhibitorId: number
+): Promise<PublicEventBooth | null> => {
+  const booth = await prisma.eventBooth.update({
+    where: { id },
+    data: {
+      exhibitorId: exhibitorId,
+      status: 'B',
+    },
+    select: {
+      id: true,
+      eventId: true,
+      name: true,
+      size: true,
+      price: true,
+      status: true,
+      exhibitorId: true,
+    },
+  });
+  return booth ? { ...booth, status: booth.status as 'A' | 'B' } : null;
 };
 
 export const deleteEventBooth = async (

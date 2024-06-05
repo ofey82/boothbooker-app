@@ -24,6 +24,7 @@ model User {
     // Relation fields
   events    Event[]     @relation("EventCreator")
   eventBooths EventBooth[] @relation("BoothExhibitor")
+  requests       Request[]     @relation("UserRequests")
 }
 
 model Event {
@@ -52,4 +53,15 @@ model EventBooth {
 
   event      Event     @relation(fields: [eventId], references: [id])
   exhibitor  User?     @relation(fields: [exhibitorId], references: [id], name: "BoothExhibitor")
+  requests    Request[]   @relation("BoothRequests")
+}
+
+model Request {
+  id           Int      @id @default(autoincrement())
+  eventBoothId Int
+  applicantId  Int
+  status       String   @default("O") // "O" for open, "A" for accepted, "D" for denied
+
+  eventBooth   EventBooth @relation(fields: [eventBoothId], references: [id], name: "BoothRequests")
+  applicant    User       @relation(fields: [applicantId], references: [id], name: "UserRequests")
 }

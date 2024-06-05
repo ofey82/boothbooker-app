@@ -99,6 +99,29 @@ async function main() {
     }
   }
 
+  // Create requests only if they don't exist
+  const requests = [
+    { eventBoothId: 1, applicantId: 1, status: 'O' },
+    { eventBoothId: 1, applicantId: 2, status: 'O' },
+    { eventBoothId: 2, applicantId: 3, status: 'A' },
+    { eventBoothId: 2, applicantId: 1, status: 'D' },
+    { eventBoothId: 3, applicantId: 2, status: 'O' },
+    { eventBoothId: 4, applicantId: 3, status: 'O' },
+  ];
+
+  for (const request of requests) {
+    const existingRequest = await prisma.request.findFirst({
+      where: {
+        eventBoothId: request.eventBoothId,
+        applicantId: request.applicantId,
+      },
+    });
+
+    if (!existingRequest) {
+      await prisma.request.create({ data: request });
+    }
+  }
+
   console.log('Seed data created');
 }
 

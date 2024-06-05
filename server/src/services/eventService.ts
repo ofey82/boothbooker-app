@@ -38,7 +38,7 @@ export const getAllEvents = async (): Promise<PublicEvent[]> => {
       status: true,
     },
   });
-  return events.map((event) => ({
+  return events.map((event: any) => ({
     ...event,
     status: event.status as 'O' | 'C',
   }));
@@ -75,7 +75,7 @@ export const getEventsByCreator = async (
       status: true,
     },
   });
-  return events.map((event) => ({
+  return events.map((event: any) => ({
     ...event,
     status: event.status as 'O' | 'C',
   }));

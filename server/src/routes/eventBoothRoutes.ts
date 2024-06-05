@@ -7,6 +7,7 @@ import {
   getEventBoothsByStatusController,
   getEventBoothsByExhibitorController,
   updateEventBoothController,
+  updateEventBoothExhibitorController,
   deleteEventBoothController,
 } from '../controllers/eventBoothController';
 
@@ -19,6 +20,7 @@ router.get('/event/:eventId', getEventBoothsByEventIdController);
 router.get('/status/:status', getEventBoothsByStatusController);
 router.get('/exhibitor/:exhibitorId', getEventBoothsByExhibitorController);
 router.put('/:id', updateEventBoothController);
+router.put('/book/:id', updateEventBoothExhibitorController);
 router.delete('/:id', deleteEventBoothController);
 
 export default router;
