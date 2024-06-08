@@ -6,6 +6,7 @@ import {
   getEventsByCreatorController,
   updateEventController,
   deleteEventController,
+  getEventsForUserController,
 } from '../controllers/eventController';
 
 const router = express.Router();
@@ -14,6 +15,7 @@ router.post('/', createEventController);
 router.get('/', getAllEventsController);
 router.get('/:id', getEventByIdController);
 router.get('/creator/:creatorId', getEventsByCreatorController);
+router.get('/user/:userId', getEventsForUserController);
 router.put('/:id', updateEventController);
 router.delete('/:id', deleteEventController);
 

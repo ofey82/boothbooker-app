@@ -1,0 +1,5 @@
+<app-header></app-header>
+<div class="workspace">
+  <router-outlet></router-outlet>
+</div>
+<app-navbar *ngIf="authService.isLoggedIn()"></app-navbar>

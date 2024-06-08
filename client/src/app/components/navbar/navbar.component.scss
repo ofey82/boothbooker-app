@@ -1,0 +1,101 @@
+// .navbar {
+//   position: fixed;
+//   bottom: 0;
+//   width: 100%;
+//   z-index: 1000; /* Ensure it is above other content */
+// }
+
+// .spacer {
+//   flex: 1 1 auto;
+// }
+
+// .navbar {
+//   position: fixed;
+//   bottom: 0;
+//   left: 0;
+//   width: 100%;
+//   z-index: 1000;
+//   display: flex;
+//   justify-content: space-around;
+// }
+
+// mat-toolbar {
+//   display: flex;
+//   justify-content: space-between;
+// }
+
+// .spacer {
+//   flex: 1 1 auto;
+// }
+
+// .navbar {
+//   position: fixed;
+//   bottom: 0;
+//   left: 0;
+//   width: 100%;
+//   z-index: 1000;
+//   display: flex;
+//   justify-content: space-around;
+// }
+
+// button {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   color: white;
+// }
+
+// .nav-icon {
+//   font-size: 36px; /* Larger icon size */
+//   // margin-bottom: 4px;
+// }
+
+// .nav-text {
+//   font-size: 12px; /* Smaller text size */
+// }
+
+// .spacer {
+//   flex: 1 1 auto;
+// }
+
+.navbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-around;
+}
+
+mat-toolbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+button {
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: auto;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nav-icon {
+  margin-top: 4px;
+  margin-right: 0 !important;
+  align-items: center;
+}
+
+.nav-text {
+  font-size: 10px;
+  background: transparent;
+  margin-top: 0 !important;
+}

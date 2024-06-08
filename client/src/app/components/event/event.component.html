@@ -1,0 +1,13 @@
+<mat-card *ngIf="event" (click)="navigateToEventDetails()">
+  <img
+    mat-card-image
+    src="https://via.placeholder.com/600x300"
+    alt="{{ event.name }}"
+  />
+  <mat-card-content>
+    <mat-card-title>{{ event.name }}</mat-card-title>
+    <p>{{ event.date | date }}</p>
+    <p>{{ event.local }}</p>
+    <p>Available Booths: {{ event.availableBooths }}</p>
+  </mat-card-content>
+</mat-card>
