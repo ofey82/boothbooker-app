@@ -8,10 +8,11 @@ import {
   deleteEventController,
   getEventsForUserController,
 } from '../controllers/eventController';
+import upload from '../middlewares/upload';
 
 const router = express.Router();
 
-router.post('/', createEventController);
+router.post('/', upload.single('image'), createEventController);
 router.get('/', getAllEventsController);
 router.get('/:id', getEventByIdController);
 router.get('/creator/:creatorId', getEventsByCreatorController);
