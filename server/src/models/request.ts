@@ -12,6 +12,20 @@ export interface PublicRequest {
   status: 'O' | 'A' | 'D';
 }
 
+export interface EventRequest {
+  id: number;
+  eventBoothId: number;
+  applicantId: number;
+  status: 'O' | 'A' | 'D';
+  event: {
+    id: number;
+    name: string;
+    date: Date;
+    local: string;
+    description: string;
+  };
+}
+
 export const isValidRequest = (request: any): request is Request => {
   return (
     typeof request.id === 'number' &&

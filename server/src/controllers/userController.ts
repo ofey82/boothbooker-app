@@ -2,12 +2,28 @@
 
 import { Request, Response } from 'express';
 import {
+  login,
   createUser,
   getAllUsers,
   getUserById,
   getUserByEmail,
 } from '../services/userService';
 import { PublicUser } from '../models/user';
+
+export const loginController = async (req: Request, res: Response) => {
+  const { email, password } = req.body;
+
+  try {
+    const user = await login(email, password);
+    if (user) {
+      res.json(user);
+    } else {
+      res.status(401).json({ message: 'Invalid email or password' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'An error occurred during login' });
+  }
+};
 
 export const createUserController = async (req: Request, res: Response) => {
   const { username, email, password } = req.body;

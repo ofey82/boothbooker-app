@@ -1,5 +1,6 @@
 import express from 'express';
 import {
+  loginController,
   createUserController,
   getAllUsersController,
   getUserByIdController,
@@ -7,6 +8,9 @@ import {
 } from '../controllers/userController';
 
 const router = express.Router();
+
+// Login a user
+router.post('/login', loginController);
 
 // Create a new user
 router.post('/', createUserController);

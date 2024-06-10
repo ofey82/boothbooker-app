@@ -18,6 +18,7 @@ export interface PublicEvent {
   description: string;
   creatorId: number;
   status: 'O' | 'C';
+  availableBooths: number;
 }
 
 export const isValidEvent = (event: any): event is Event => {

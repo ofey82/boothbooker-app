@@ -23,7 +23,13 @@ export const createEvent = async (
       status: true,
     },
   });
-  return event as PublicEvent;
+  const availableBooths = await prisma.eventBooth.count({
+    where: {
+      eventId: event.id,
+      status: 'A',
+    },
+  });
+  return { ...event, availableBooths, status: event.status as 'O' | 'C' };
 };
 
 export const getAllEvents = async (): Promise<PublicEvent[]> => {
@@ -38,10 +44,18 @@ export const getAllEvents = async (): Promise<PublicEvent[]> => {
       status: true,
     },
   });
-  return events.map((event: any) => ({
-    ...event,
-    status: event.status as 'O' | 'C',
-  }));
+  const publicEvents = await Promise.all(
+    events.map(async (event: any) => {
+      const availableBooths = await prisma.eventBooth.count({
+        where: {
+          eventId: event.id,
+          status: 'A',
+        },
+      });
+      return { ...event, availableBooths, status: event.status as 'O' | 'C' };
+    })
+  );
+  return publicEvents;
 };
 
 export const getEventById = async (id: number): Promise<PublicEvent | null> => {
@@ -57,7 +71,16 @@ export const getEventById = async (id: number): Promise<PublicEvent | null> => {
       status: true,
     },
   });
-  return event ? { ...event, status: event.status as 'O' | 'C' } : null;
+  if (!event) {
+    return null;
+  }
+  const availableBooths = await prisma.eventBooth.count({
+    where: {
+      eventId: event.id,
+      status: 'A',
+    },
+  });
+  return { ...event, availableBooths, status: event.status as 'O' | 'C' };
 };
 
 export const getEventsByCreator = async (
@@ -75,10 +98,53 @@ export const getEventsByCreator = async (
       status: true,
     },
   });
-  return events.map((event: any) => ({
-    ...event,
-    status: event.status as 'O' | 'C',
-  }));
+  const publicEvents = await Promise.all(
+    events.map(async (event) => {
+      const availableBooths = await prisma.eventBooth.count({
+        where: {
+          eventId: event.id,
+          status: 'A',
+        },
+      });
+      return { ...event, availableBooths, status: event.status as 'O' | 'C' };
+    })
+  );
+  return publicEvents;
+};
+
+export const getEventsForUser = async (
+  userId: number
+): Promise<PublicEvent[]> => {
+  const events = await prisma.event.findMany({
+    where: {
+      booths: {
+        some: {
+          exhibitorId: userId,
+        },
+      },
+    },
+    select: {
+      id: true,
+      name: true,
+      date: true,
+      local: true,
+      description: true,
+      creatorId: true,
+      status: true,
+    },
+  });
+  const publicEvents = await Promise.all(
+    events.map(async (event) => {
+      const availableBooths = await prisma.eventBooth.count({
+        where: {
+          eventId: event.id,
+          status: 'A',
+        },
+      });
+      return { ...event, availableBooths, status: event.status as 'O' | 'C' };
+    })
+  );
+  return publicEvents;
 };
 
 export const updateEvent = async (
@@ -98,7 +164,13 @@ export const updateEvent = async (
       status: true,
     },
   });
-  return event ? { ...event, status: event.status as 'O' | 'C' } : null;
+  const availableBooths = await prisma.eventBooth.count({
+    where: {
+      eventId: event.id,
+      status: 'A',
+    },
+  });
+  return { ...event, availableBooths, status: event.status as 'O' | 'C' };
 };
 
 export const deleteEvent = async (id: number): Promise<PublicEvent | null> => {
@@ -114,5 +186,11 @@ export const deleteEvent = async (id: number): Promise<PublicEvent | null> => {
       status: true,
     },
   });
-  return event ? { ...event, status: event.status as 'O' | 'C' } : null;
+  const availableBooths = await prisma.eventBooth.count({
+    where: {
+      eventId: event.id,
+      status: 'A',
+    },
+  });
+  return { ...event, availableBooths, status: event.status as 'O' | 'C' };
 };

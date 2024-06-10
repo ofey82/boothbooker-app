@@ -1,0 +1,22 @@
+<mat-toolbar color="primary" class="navbar">
+  <button mat-button (click)="navigateTo('/main')">
+    <mat-icon class="nav-icon">home</mat-icon>
+    <span class="nav-text">Home</span>
+  </button>
+  <button mat-button (click)="navigateTo('/events')">
+    <mat-icon class="nav-icon">event</mat-icon>
+    <span class="nav-text">My Events</span>
+  </button>
+  <button mat-button (click)="navigateTo('/create-event')">
+    <mat-icon class="nav-icon">add_circle</mat-icon>
+    <span class="nav-text">Event</span>
+  </button>
+  <button mat-button (click)="navigateTo('/requests')">
+    <mat-icon class="nav-icon">assignment</mat-icon>
+    <span class="nav-text">Requests</span>
+  </button>
+  <button mat-button (click)="navigateTo('/profile')">
+    <mat-icon class="nav-icon">person</mat-icon>
+    <span class="nav-text">Profile</span>
+  </button>
+</mat-toolbar>

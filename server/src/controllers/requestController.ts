@@ -7,7 +7,9 @@ import {
   deleteRequest,
   getRequestsByEventBoothId,
   getRequestsByApplicantId,
+  getRequestsForEventsCreatedByUser,
   acceptRequestAndDeclineOthers,
+  declineRequest,
 } from '../services/requestService';
 
 export const createRequestController = async (req: Request, res: Response) => {
@@ -69,6 +71,19 @@ export const getRequestsByApplicantIdController = async (
   }
 };
 
+export const getRequestsForEventsCreatedByUserController = async (
+  req: Request,
+  res: Response
+) => {
+  const { id } = req.params;
+  try {
+    const requests = await getRequestsForEventsCreatedByUser(Number(id));
+    res.status(200).json(requests);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to retrieve requests' });
+  }
+};
+
 export const updateRequestController = async (req: Request, res: Response) => {
   const { id } = req.params;
   const data = req.body;
@@ -95,6 +110,17 @@ export const acceptRequestController = async (req: Request, res: Response) => {
     }
   } catch (error) {
     res.status(400).json({ error: 'Failed to accept request' });
+  }
+};
+
+export const declineRequestController = async (req: Request, res: Response) => {
+  try {
+    const requestId = parseInt(req.params.id, 10);
+    console.log('requestId: ', requestId);
+    const request = await declineRequest(requestId);
+    res.status(200).json(request);
+  } catch (error) {
+    res.status(500).json({ error: 'Request not found' });
   }
 };
 

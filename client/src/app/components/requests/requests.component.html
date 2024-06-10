@@ -1,0 +1,67 @@
+<div>
+  <h2>Requests</h2>
+  <div class="request-list" *ngIf="requests.length > 0; else noRequests">
+    <mat-card *ngFor="let request of requests" class="request-card">
+      <div class="card-header">
+        <mat-card-title>{{ request.event.name }}</mat-card-title>
+        <button
+          mat-icon-button
+          color="warn"
+          (click)="deleteRequest(request.id)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+      <mat-card-subtitle>{{ request.event.date | date }}</mat-card-subtitle>
+      <mat-card-content>
+        <p>{{ request.event.local }}</p>
+        <mat-icon *ngIf="request.status === 'O'" color="primary"
+          >hourglass_empty</mat-icon
+        >
+        <mat-icon *ngIf="request.status === 'A'" color="primary"
+          >check_circle</mat-icon
+        >
+        <mat-icon *ngIf="request.status === 'D'" color="primary"
+          >cancel</mat-icon
+        >
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <ng-template #noRequests>
+    <p>No requests found.</p>
+  </ng-template>
+</div>
+
+<div>
+  <h2>Approval Requests</h2>
+  <div
+    class="request-list"
+    *ngIf="approvalRequests.length > 0; else noApprovalRequests"
+  >
+    <mat-card *ngFor="let request of approvalRequests" class="request-card">
+      <div class="card-header">
+        <mat-card-title>{{ request.event.name }}</mat-card-title>
+        <button
+          mat-icon-button
+          color="warn"
+          (click)="deleteRequest(request.id)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+      <mat-card-subtitle>{{ request.event.date | date }}</mat-card-subtitle>
+      <mat-card-content>
+        <p>{{ request.event.local }}</p>
+        <button mat-button color="primary" (click)="approveRequest(request.id)">
+          Approve
+        </button>
+        <button mat-button color="warn" (click)="declineRequest(request.id)">
+          Decline
+        </button>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <ng-template #noApprovalRequests>
+    <p>No approval requests found.</p>
+  </ng-template>
+</div>

@@ -4,6 +4,7 @@ import {
   getAllEvents,
   getEventById,
   getEventsByCreator,
+  getEventsForUser,
   updateEvent,
   deleteEvent,
 } from '../services/eventService';
@@ -57,6 +58,19 @@ export const getEventsByCreatorController = async (
   try {
     const events = await getEventsByCreator(Number(creatorId));
     res.json(events);
+  } catch (error) {
+    res.status(400).json({ error: 'Failed to retrieve events' });
+  }
+};
+
+export const getEventsForUserController = async (
+  req: Request,
+  res: Response
+) => {
+  const { userId } = req.params;
+  try {
+    const events = await getEventsForUser(Number(userId));
+    res.status(200).json(events);
   } catch (error) {
     res.status(400).json({ error: 'Failed to retrieve events' });
   }

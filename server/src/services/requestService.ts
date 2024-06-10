@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import { Request, PublicRequest } from '../models/request';
+import { Request, PublicRequest, EventRequest } from '../models/request';
 
 const prisma = new PrismaClient();
 
@@ -72,19 +72,66 @@ export const getRequestsByEventBoothId = async (
 
 export const getRequestsByApplicantId = async (
   applicantId: number
-): Promise<PublicRequest[]> => {
+): Promise<EventRequest[]> => {
   const requests = await prisma.request.findMany({
     where: { applicantId },
-    select: {
-      id: true,
-      eventBoothId: true,
-      applicantId: true,
-      status: true,
+    include: {
+      eventBooth: {
+        include: {
+          event: true,
+        },
+      },
     },
   });
+
   return requests.map((request: any) => ({
-    ...request,
+    id: request.id,
+    eventBoothId: request.eventBoothId,
+    applicantId: request.applicantId,
     status: request.status as 'O' | 'A' | 'D',
+    event: {
+      id: request.eventBooth.event.id,
+      name: request.eventBooth.event.name,
+      date: request.eventBooth.event.date,
+      local: request.eventBooth.event.local,
+      description: request.eventBooth.event.description,
+    },
+  }));
+};
+
+export const getRequestsForEventsCreatedByUser = async (
+  userId: number
+): Promise<EventRequest[]> => {
+  const requests = await prisma.request.findMany({
+    where: {
+      eventBooth: {
+        event: {
+          creatorId: userId,
+        },
+      },
+      status: 'O', // Only fetch open requests
+    },
+    include: {
+      eventBooth: {
+        include: {
+          event: true,
+        },
+      },
+    },
+  });
+
+  return requests.map((request: any) => ({
+    id: request.id,
+    eventBoothId: request.eventBoothId,
+    applicantId: request.applicantId,
+    status: request.status as 'O' | 'A' | 'D',
+    event: {
+      id: request.eventBooth.event.id,
+      name: request.eventBooth.event.name,
+      date: request.eventBooth.event.date,
+      local: request.eventBooth.event.local,
+      description: request.eventBooth.event.description,
+    },
   }));
 };
 
@@ -131,6 +178,24 @@ export const acceptRequestAndDeclineOthers = async (
     });
   }
 
+  return request
+    ? { ...request, status: request.status as 'O' | 'A' | 'D' }
+    : null;
+};
+
+export const declineRequest = async (
+  id: number
+): Promise<PublicRequest | null> => {
+  const request = await prisma.request.update({
+    where: { id },
+    data: { status: 'D' },
+    select: {
+      id: true,
+      eventBoothId: true,
+      applicantId: true,
+      status: true,
+    },
+  });
   return request
     ? { ...request, status: request.status as 'O' | 'A' | 'D' }
     : null;

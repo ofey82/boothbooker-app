@@ -3,6 +3,25 @@ import { PublicUser } from '../models/user';
 
 const prisma = new PrismaClient();
 
+export const login = async (
+  email: string,
+  password: string
+): Promise<PublicUser | null> => {
+  const user = await prisma.user.findUnique({
+    where: { email },
+  });
+
+  if (user && user.password === password) {
+    return {
+      id: user.id,
+      username: user.username,
+      email: user.email,
+    };
+  }
+
+  return null;
+};
+
 export const createUser = async (
   username: string,
   email: string,
