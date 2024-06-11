@@ -34,7 +34,7 @@ app.use(express.json());
 app.use(cors());
 app.use(
   '/uploads/images',
-  express.static(path.join(__dirname, '../../public/uploads/images'))
+  express.static(path.join(__dirname, '../public/uploads/images'))
 );
 
 app.use('/api/users', userRoutes);

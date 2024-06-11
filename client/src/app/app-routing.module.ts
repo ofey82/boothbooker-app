@@ -6,7 +6,7 @@ import { EventListComponent } from './components/event-list/event-list.component
 import { EventDetailsComponent } from './components/event-details/event-details.component';
 import { RequestsComponent } from './components/requests/requests.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { CreateEventComponent } from './create-event/create-event.component';
+import { CreateEventComponent } from './components/create-event/create-event.component';
 import { authGuard } from './guard/auth.guard';
 
 const routes: Routes = [

@@ -2,7 +2,8 @@
   <mat-card *ngIf="event" class="event-details-card">
     <img
       mat-card-image
-      src="https://via.placeholder.com/600x300"
+      *ngIf="event.imageUrl"
+      [src]="'http://localhost:3000' + event.imageUrl"
       alt="{{ event.name }}"
     />
     <mat-card-content>

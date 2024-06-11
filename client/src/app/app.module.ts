@@ -31,7 +31,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { RequestsComponent } from './components/requests/requests.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { HeaderComponent } from './components/header/header.component';
-import { CreateEventComponent } from './create-event/create-event.component';
+import { CreateEventComponent } from './components/create-event/create-event.component';
 
 @NgModule({
   declarations: [

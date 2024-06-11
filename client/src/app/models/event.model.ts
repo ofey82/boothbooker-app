@@ -4,6 +4,7 @@ export interface Event {
   date: Date;
   local: string;
   description: string;
+  imageUrl: string;
   creatorId: number;
   status: 'O' | 'C';
   availableBooths: number;

@@ -74,6 +74,19 @@
   </mat-step>
   <mat-step>
     <form [formGroup]="eventForm">
+      <ng-template matStepLabel>Upload Event Image</ng-template>
+      <div>
+        <label for="fileUpload">Upload Image</label>
+        <input id="fileUpload" type="file" (change)="onFileSelected($event)" />
+      </div>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <form [formGroup]="eventForm">
       <ng-template matStepLabel>Add Booths</ng-template>
       <div formArrayName="booths">
         <div
