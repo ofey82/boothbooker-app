@@ -20,8 +20,8 @@ export class EventService {
     return this.http.get<Event>(`${this.apiUrl}/${id}`);
   }
 
-  createEvent(event: Partial<Event>): Observable<Event> {
-    return this.http.post<Event>(this.apiUrl, event);
+  createEvent(eventData: FormData): Observable<Event> {
+    return this.http.post<Event>(this.apiUrl, eventData);
   }
 
   updateEvent(id: number, event: Partial<Event>): Observable<Event> {

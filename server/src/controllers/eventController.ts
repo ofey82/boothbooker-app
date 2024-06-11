@@ -12,13 +12,16 @@ import { Event } from '../models/event';
 
 export const createEventController = async (req: Request, res: Response) => {
   const { name, date, local, description, creatorId, status } = req.body;
+  const imageUrl = req.file ? `/uploads/images/${req.file.filename}` : '';
+
   try {
     const event = await createEvent(
       name,
       new Date(date),
       local,
       description,
-      creatorId,
+      imageUrl,
+      Number(creatorId),
       status
     );
     res.json(event);

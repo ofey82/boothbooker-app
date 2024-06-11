@@ -35,6 +35,7 @@ model Event {
   description String
   creatorId   Int
   status      String       @default("O") // "O" for open, "C" for closed
+  imageUrl    String       @default("")
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
 

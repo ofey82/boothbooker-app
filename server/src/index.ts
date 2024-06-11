@@ -9,6 +9,7 @@ import userRoutes from './routes/userRoutes';
 import eventRoutes from './routes/eventRoutes';
 import eventBoothRoutes from './routes/eventBoothRoutes';
 import requestRoutes from './routes/requestRoutes';
+import path from 'path';
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -31,6 +32,10 @@ app.use(express.json());
 
 // Enable CORS with options
 app.use(cors());
+app.use(
+  '/uploads/images',
+  express.static(path.join(__dirname, '../public/uploads/images'))
+);
 
 app.use('/api/users', userRoutes);
 app.use('/api/events', eventRoutes);
