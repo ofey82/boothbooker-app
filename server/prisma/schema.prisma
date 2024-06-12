@@ -1,0 +1,68 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+    // Relation fields
+  events    Event[]     @relation("EventCreator")
+  eventBooths EventBooth[] @relation("BoothExhibitor")
+  requests       Request[]     @relation("UserRequests")
+}
+
+model Event {
+  id          Int         @id @default(autoincrement())
+  name        String
+  date        DateTime
+  local       String
+  description String
+  creatorId   Int
+  status      String       @default("O") // "O" for open, "C" for closed
+  imageUrl    String       @default("")
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  creator     User         @relation(fields: [creatorId], references: [id], name: "EventCreator")
+  booths      EventBooth[] // Relation field for event booths
+}
+
+model EventBooth {
+  id         Int       @id @default(autoincrement())
+  eventId    Int
+  name       String
+  size       String
+  price      Float
+  status     String    @default("A") // "A" for available, "B" for booked
+  exhibitorId Int? // Nullable foreign key to User
+
+  event      Event     @relation(fields: [eventId], references: [id])
+  exhibitor  User?     @relation(fields: [exhibitorId], references: [id], name: "BoothExhibitor")
+  requests    Request[]   @relation("BoothRequests")
+}
+
+model Request {
+  id           Int      @id @default(autoincrement())
+  eventBoothId Int
+  applicantId  Int
+  status       String   @default("O") // "O" for open, "A" for accepted, "D" for denied
+
+  eventBooth   EventBooth @relation(fields: [eventBoothId], references: [id], name: "BoothRequests")
+  applicant    User       @relation(fields: [applicantId], references: [id], name: "UserRequests")
+}

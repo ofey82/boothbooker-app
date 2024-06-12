@@ -1,0 +1,14 @@
+.event-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+app-event {
+  width: 300px;
+  // margin: 10px;
+}
+
+h2 {
+  margin-left: 64px;
+}

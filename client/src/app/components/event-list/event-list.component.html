@@ -1,0 +1,20 @@
+<div *ngIf="context === 'main'">
+  <div class="event-list">
+    <app-event *ngFor="let event of events" [event]="event"></app-event>
+  </div>
+</div>
+
+<div *ngIf="context === 'userEvents'">
+  <h2>Created Events</h2>
+  <div class="event-list">
+    <app-event *ngFor="let event of createdEvents" [event]="event"></app-event>
+  </div>
+
+  <h2>Attending Events</h2>
+  <div class="event-list">
+    <app-event
+      *ngFor="let event of attendingEvents"
+      [event]="event"
+    ></app-event>
+  </div>
+</div>

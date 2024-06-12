@@ -1,0 +1,51 @@
+<div class="event-details-container">
+  <mat-card *ngIf="event" class="event-details-card">
+    <img
+      mat-card-image
+      *ngIf="event.imageUrl"
+      [src]="'http://localhost:3000' + event.imageUrl"
+      alt="{{ event.name }}"
+    />
+    <mat-card-content>
+      <mat-card-title>{{ event.name }}</mat-card-title>
+      <mat-card-subtitle
+        >{{ event.date | date }} - {{ event.local }}</mat-card-subtitle
+      >
+      <p>{{ event.description }}</p>
+      <p>Status: {{ event.status === "O" ? "Open" : "Closed" }}</p>
+      <p>Available Booths: {{ availableBooths.length }}</p>
+    </mat-card-content>
+
+    <!-- <div class="booth-list">
+      <mat-card
+        *ngFor="let booth of availableBooths"
+        (click)="requestBooth(booth.id)"
+        class="booth-card"
+      >
+        <mat-card-title>{{ booth.name }}</mat-card-title>
+        <mat-card-content>
+          <p>Size: {{ booth.size }}</p>
+          <p>Price: {{ booth.price | currency }}</p>
+        </mat-card-content>
+      </mat-card>
+    </div> -->
+    <div class="booth-list">
+      <mat-card
+        *ngFor="let booth of availableBooths"
+        (click)="requestBooth(booth.id)"
+        class="booth-card"
+      >
+        <mat-card-header>
+          <mat-card-title>{{ booth.name }}</mat-card-title>
+          <button mat-icon-button color="primary">
+            <mat-icon>send</mat-icon>
+          </button>
+        </mat-card-header>
+        <mat-card-content>
+          <p>Size: {{ booth.size }}</p>
+          <p>Price: {{ booth.price | currency }}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </mat-card>
+</div>

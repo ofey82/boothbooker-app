@@ -1,0 +1,57 @@
+h2 {
+  margin-left: 20px;
+}
+
+p {
+  margin-left: 20px;
+}
+
+.request-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: space-around;
+}
+
+.request-card {
+  width: calc(100% - 32px);
+  margin: 16px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  mat-card-title {
+    font-weight: bold;
+    margin-left: 15px;
+  }
+
+  mat-card-subtitle {
+    color: gray;
+    margin-left: 15px;
+  }
+
+  mat-card-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .card-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .status-icon {
+      margin-left: auto;
+    }
+
+    p {
+      margin: 8px 0;
+    }
+  }
+}

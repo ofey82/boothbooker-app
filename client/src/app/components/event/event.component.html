@@ -1,0 +1,14 @@
+<mat-card *ngIf="event" (click)="navigateToEventDetails()">
+  <img
+    mat-card-image
+    *ngIf="event.imageUrl"
+    [src]="'http://localhost:3000' + event.imageUrl"
+    alt="{{ event.name }}"
+  />
+  <mat-card-content>
+    <mat-card-title>{{ event.name }}</mat-card-title>
+    <p>{{ event.date | date }}</p>
+    <p>{{ event.local }}</p>
+    <p>Available Booths: {{ event.availableBooths }}</p>
+  </mat-card-content>
+</mat-card>

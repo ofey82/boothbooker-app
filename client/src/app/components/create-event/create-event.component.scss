@@ -1,0 +1,60 @@
+// .booth-group {
+//   display: flex;
+//   align-items: center;
+//   margin-bottom: 16px;
+
+//   mat-form-field {
+//     flex: 1;
+//     margin-right: 16px;
+//   }
+
+//   button {
+//     margin-left: 8px;
+//   }
+// }
+
+.booth-group {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.booth-group .top-row {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.booth-group .top-row mat-form-field {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.booth-group .top-row button {
+  align-self: flex-start;
+}
+
+.booth-group .bottom-row {
+  display: flex;
+  width: 100%;
+}
+
+.booth-group .bottom-row mat-form-field {
+  flex: 1 1 45%;
+}
+
+.booth-group .bottom-row mat-form-field:first-child {
+  margin-right: 10px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-divider {
+  margin-bottom: 10px;
+}
+
+textarea {
+  resize: vertical; /* Allow only vertical resizing */
+}
