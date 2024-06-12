@@ -46,6 +46,7 @@ async function main() {
       local: 'Berlin',
       description:
         'Join us at DevGathering in Berlin for a comprehensive developer conference. Network with industry experts, attend workshops, and stay updated with the latest trends in software development.',
+      imageUrl: '/uploads/images/dev-gathering.jpeg',
       creatorId: 1,
       status: 'O',
     },
@@ -55,6 +56,7 @@ async function main() {
       local: 'New York',
       description:
         'Sales Connect in New York is the premier event for sales professionals. Enhance your skills, learn new strategies, and connect with top sales leaders from around the globe.',
+      imageUrl: '/uploads/images/foodie-event.jpg',
       creatorId: 2,
       status: 'O',
     },
@@ -64,6 +66,7 @@ async function main() {
       local: 'San Francisco',
       description:
         'Foodie Trucks is a delightful event in San Francisco celebrating the best food trucks in the region. Enjoy a variety of gourmet food, live music, and family-friendly activities.',
+      imageUrl: '/uploads/images/sales-event.jpeg',
       creatorId: 3,
       status: 'O',
     },
