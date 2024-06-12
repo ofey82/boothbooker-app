@@ -49,26 +49,4 @@ export class EventListComponent implements OnInit {
         });
     }
   }
-
-  // ngOnInit(): void {
-  //   console.log(this.context);
-  //   if (this.context === 'main') {
-  //     this.eventService.getEvents().subscribe((events: Event[]) => {
-  //       this.events = events;
-  //       console.log('this.events', this.events);
-  //     });
-  //   } else if (this.context === 'userEvents') {
-  //     this.eventService
-  //       .getEventsByCreator(this.userId)
-  //       .subscribe((events: Event[]) => {
-  //         this.createdEvents = events;
-  //         console.log('this.createdEvents', this.createdEvents);
-  //       });
-  //     this.eventService
-  //       .getEventsForUser(this.userId)
-  //       .subscribe((events: Event[]) => {
-  //         this.attendingEvents = events;
-  //       });
-  //   }
-  // }
 }

@@ -52,6 +52,7 @@
       <mat-card-subtitle>{{ request.event.date | date }}</mat-card-subtitle>
       <mat-card-content>
         <p>{{ request.event.local }}</p>
+        <p>Requested by: {{ request.userName }}</p>
         <button mat-button color="primary" (click)="approveRequest(request.id)">
           Approve
         </button>

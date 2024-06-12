@@ -16,13 +16,31 @@
       <p>Available Booths: {{ availableBooths.length }}</p>
     </mat-card-content>
 
-    <div class="booth-list">
+    <!-- <div class="booth-list">
       <mat-card
         *ngFor="let booth of availableBooths"
         (click)="requestBooth(booth.id)"
         class="booth-card"
       >
         <mat-card-title>{{ booth.name }}</mat-card-title>
+        <mat-card-content>
+          <p>Size: {{ booth.size }}</p>
+          <p>Price: {{ booth.price | currency }}</p>
+        </mat-card-content>
+      </mat-card>
+    </div> -->
+    <div class="booth-list">
+      <mat-card
+        *ngFor="let booth of availableBooths"
+        (click)="requestBooth(booth.id)"
+        class="booth-card"
+      >
+        <mat-card-header>
+          <mat-card-title>{{ booth.name }}</mat-card-title>
+          <button mat-icon-button color="primary">
+            <mat-icon>send</mat-icon>
+          </button>
+        </mat-card-header>
         <mat-card-content>
           <p>Size: {{ booth.size }}</p>
           <p>Price: {{ booth.price | currency }}</p>

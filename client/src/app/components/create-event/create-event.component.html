@@ -5,13 +5,7 @@
       <mat-form-field>
         <mat-label>Event Name</mat-label>
         <input matInput formControlName="name" required />
-        <mat-error *ngIf="eventForm.get('name')?.hasError('required')"
-          >Event name is required</mat-error
-        >
       </mat-form-field>
-      <div>
-        <button mat-button matStepperNext>Next</button>
-      </div>
     </form>
   </mat-step>
   <mat-step [stepControl]="eventForm.get('local')!">
@@ -20,14 +14,7 @@
       <mat-form-field>
         <mat-label>Event Location</mat-label>
         <input matInput formControlName="local" required />
-        <mat-error *ngIf="eventForm.get('local')?.hasError('required')!"
-          >Event location is required</mat-error
-        >
       </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
     </form>
   </mat-step>
   <mat-step [stepControl]="eventForm.get('date')!">
@@ -43,14 +30,7 @@
         />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
-        <mat-error *ngIf="eventForm.get('date')?.hasError('required')!"
-          >Event date is required</mat-error
-        >
       </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
     </form>
   </mat-step>
   <mat-step [stepControl]="eventForm.get('description')!">
@@ -66,10 +46,6 @@
           cdkAutosizeMaxRows="5"
         ></textarea>
       </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
     </form>
   </mat-step>
   <mat-step>
@@ -78,10 +54,6 @@
       <div>
         <label for="fileUpload">Upload Image</label>
         <input id="fileUpload" type="file" (change)="onFileSelected($event)" />
-      </div>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
       </div>
     </form>
   </mat-step>
@@ -94,40 +66,40 @@
           [formGroupName]="i"
           class="booth-group"
         >
-          <mat-form-field>
-            <mat-label>Name</mat-label>
-            <input matInput formControlName="name" required />
-            <!-- <mat-error *ngIf="booth.get('name')?.hasError('required')"
-              >Booth name is required</mat-error
-            > -->
-          </mat-form-field>
-          <mat-form-field>
-            <mat-label>Size</mat-label>
-            <input matInput formControlName="size" required />
-            <!-- <mat-error *ngIf="booth.get('size')?.hasError('required')"
-              >Booth size is required</mat-error
-            > -->
-          </mat-form-field>
-          <mat-form-field>
-            <mat-label>Price</mat-label>
-            <input matInput type="number" formControlName="price" required />
-            <!-- <mat-error
-              *ngIf="booth.get('price')?.hasError('required')"
-            ></mat-error> -->
-            <mat-error *ngIf="booth.get('price')?.hasError('min')"
-              >Booth price must be greater than 0</mat-error
-            >
-          </mat-form-field>
-          <button mat-icon-button color="warn" (click)="removeBooth(i)">
-            <mat-icon>delete</mat-icon>
-          </button>
+          <div class="top-row">
+            <mat-form-field>
+              <mat-label>Name</mat-label>
+              <input matInput formControlName="name" required />
+            </mat-form-field>
+            <button mat-icon-button color="warn" (click)="removeBooth(i)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+          <div class="bottom-row">
+            <mat-form-field>
+              <mat-label>Size</mat-label>
+              <input matInput formControlName="size" required />
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Price</mat-label>
+              <input matInput type="number" formControlName="price" required />
+            </mat-form-field>
+          </div>
         </div>
       </div>
       <button mat-button (click)="addBooth()">Add Booth</button>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="submitForm(stepper)">Submit</button>
-      </div>
     </form>
+    <mat-divider></mat-divider>
+    <div>
+      <button
+        mat-flat-button
+        [color]="eventForm.valid ? 'primary' : null"
+        [disabled]="!eventForm.valid"
+        (click)="submitForm(stepper)"
+        class="submit-btn"
+      >
+        Submit
+      </button>
+    </div>
   </mat-step>
 </mat-vertical-stepper>

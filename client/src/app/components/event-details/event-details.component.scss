@@ -12,27 +12,74 @@
   text-align: justify;
 }
 
+// .booth-list {
+//   display: flex;
+//   flex-wrap: wrap;
+//   justify-content: space-around;
+//   width: 100%;
+//   max-width: 800px;
+//   text-align: center;
+// }
+
+// mat-card {
+//   width: 300px;
+//   margin: 10px;
+//   cursor: pointer;
+// }
+
+// mat-card img {
+//   width: 100%;
+//   height: auto;
+// }
+
+// .booth-card {
+//   background-color: var(--primary-color);
+//   color: #fff;
+// }
+
 .booth-list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
-  width: 100%;
-  max-width: 800px;
-  text-align: center;
-}
-
-mat-card {
-  width: 300px;
-  margin: 10px;
-  cursor: pointer;
-}
-
-mat-card img {
-  width: 100%;
-  height: auto;
+  gap: 16px;
+  justify-content: center;
+  padding: 16px;
 }
 
 .booth-card {
-  background-color: var(--primary-color);
   color: #fff;
+  background-color: var(--primary-color);
+  background-color: primary;
+  width: 300px;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  mat-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  mat-card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+
+  mat-card-content {
+    p {
+      margin: 4px 0;
+    }
+  }
+
+  button {
+    color: #fff;
+    position: absolute;
+    top: 30px;
+    right: 8px;
+  }
 }
