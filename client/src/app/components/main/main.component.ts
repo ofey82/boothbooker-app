@@ -8,10 +8,5 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent {
-  constructor(private authService: AuthService, private router: Router) {}
-
-  logout(): void {
-    this.authService.logout();
-    this.router.navigate(['/login']);
-  }
+  constructor() {}
 }

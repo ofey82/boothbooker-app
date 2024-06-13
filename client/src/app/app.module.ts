@@ -14,6 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatDivider } from '@angular/material/divider';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -64,6 +65,7 @@ import { CreateEventComponent } from './components/create-event/create-event.com
     MatStepperModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatDivider,
     AppRoutingModule,
   ],
   providers: [AuthService, EventService, EventBoothService, RequestService],
